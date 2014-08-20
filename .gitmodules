@@ -1,0 +1,10 @@
+[submodule "server/rackful"]
+	path = server/rackful
+	url = git@github.com:pieterb/rackful.git
+	branch = 0.2.x_toptal
+[submodule "server/yaks"]
+	path = server/yaks
+	url = git@github.com:plexus/yaks.git
+[submodule "client/hal-browser"]
+	path = client/hal-browser
+	url = git@github.com:mikekelly/hal-browser.git

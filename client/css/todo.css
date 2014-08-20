@@ -1,0 +1,107 @@
+a.navbar-link:hover,a.navbar-link:focus {
+  text-decoration: none !important;
+}
+
+#lucid-top-level-container {
+  position: fixed;
+  /* `top` is set from javascript. */
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+#lucid-top-level-container>div.tab-pane {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  /* height: 100%;
+  width: 100%; */
+}
+
+#contacts-pane-left {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 200px;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
+}
+
+#contacts-pane-left>div {
+  width: 100%;
+}
+
+#contacts-pane-left .btn-group-vertical {
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#contacts-pane-left .btn-group-vertical button {
+  text-align: left;
+}
+
+#contacts-pane-left .btn-group-vertical img {
+  width: 24px;
+  height: 32px;
+}
+
+#contacts-pane-actions {
+  position: absolute;
+  bottom: 0px;
+}
+
+#contacts-pane-right {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 205px;
+  right: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#contacts-pane-resizer-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 160px;
+  right: 50%;
+}
+
+#contacts-pane-resizer {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 200px;
+  width: 5px;
+  background-color: #eee;
+  cursor: col-resize;
+}
+
+/* #contacts-pane-left {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 250px;
+  background-color: #ffe;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 3px solid #eee;
+}
+
+#contacts-pane-right {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 250px;
+  right: 0px;
+  background-color: #fef;
+  overflow-y: auto;
+  overflow-x: hidden;
+} */
