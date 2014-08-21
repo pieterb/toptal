@@ -1,6 +1,6 @@
 #ruby=ruby@toptal_server
 source 'https://rubygems.org'
-gem 'rack'
+gem 'rackful', :path => './rackful'
 #gem 'memcache-client'
 #gem 'mechanize'
 #gem 'nokogiri', '1.6.1.beta.1'
