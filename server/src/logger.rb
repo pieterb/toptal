@@ -6,7 +6,7 @@ require 'logger'
 require 'thread'
 require 'pp'
 
-module Todo
+module Planner
 
 class Logger < ::Logger
 
@@ -62,7 +62,7 @@ class Logger < ::Logger
   # Sets the *id* of the current Thread.
   # By default, this Logger logs the `object_id` of the current thread for each message (unless the message is sent from the main thread). This `object_id` is not very descriptive. To make your logs more informative, you can specify a more meaningful id to each Thread you create.
   # @example
-  #   $LOGGER = Todo::Logger.new
+  #   $LOGGER = Planner::Logger.new
   #   a = Thread.new {
   #     $LOGGER.thread_id = 'gui'
   #     # ... run gui stuff here ...
@@ -73,5 +73,5 @@ class Logger < ::Logger
     Thread.current[:logger_thread_id] = id
   end
 
-end # class Todo::Logger
-end # module Todo
+end # class Planner::Logger
+end # module Planner

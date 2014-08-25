@@ -22,6 +22,8 @@ end
 # header.
 # However, it seems Sinatra has its own way of handling streaming content...
 require 'rack/chunked'
+
+
 use Rack::Chunked
 
 
@@ -33,27 +35,49 @@ use Rack::Chunked
 # If you're debugging the service, make sure you don't accidentally chase
 # phantom bugs introduced by dynamically reloading source files!
 require 'rack/reloader'
+
+
 use Rack::Reloader # , 1 # Optional cooldown period in seconds, default 10
 
 
 $CLIENT_PATH = File.expand_path( File.join( '..', 'client' ), __dir__ )
 $LOGGER.info $CLIENT_PATH
 
-use Rack::Static, :urls => [ %r{^/$}, '/css', '/js' ], :root => $CLIENT_PATH, :index => 'index.html'
-
-use Rack::Session::Pool
-use Rack::Config do
-  |env|
-  env['rack.session'][:foo] = 'bar'
+use Rack::Static, :urls => [ '/css', '/js', '/index.html', '/profiles.html' ], :root => $CLIENT_PATH
+map '/hal-browser' do
+  use Rack::Static, :urls => [ '/' ], :root => $CLIENT_PATH + '/hal-browser', :index => 'browser.html'
 end
 
-run Rackful::Server.new {
+use Rack::Session::Pool
+#use Rack::Config do
+#  |env|
+#  env['rack.session'][:foo] = 'bar'
+#end
+
+use Planner::Authenticate
+
+$SERVER = Rackful::Server.new {
   |uri|
-  case uri.path
-  when '/hello'
-    Todo::THING
+  path = uri.unslashify.path
+  case path
+  when '/'
+    raise Rackful::StatusCodes::HTTP307TemporaryRedirect.new('/index.html')
+  when '/api'
+    Planner::MAIN
+  when '/api/login'
+    Planner::LOGIN
+  when '/api/plans'
+    Planner::PLANS
+  when %r{^/api/plans/[^/]+$}
+    Planner::UserPlans.new path
+  when %r{^/api/plans/[^/]+/\d+$}
+    Planner::Plan.new path
+  when '/api/signon'
+    Planner::SIGNON
   end
 }
+
+run $SERVER
 
 #use Rack::Static, :urls => ["/js", "/css"], :root => $CLIENT_PATH
 
